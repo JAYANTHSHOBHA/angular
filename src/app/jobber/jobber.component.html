@@ -1,0 +1,207 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <div>
+        <h3>Add 3rd Question here</h3>
+      </div> 
+        <form #loginform='ngForm' [formGroup]="demo" (ngSubmit)='loginSubmit(loginform.value); loginform.reset()'>        
+              <div>
+                   <select   style="width: 100%;" formControlName="dropdown">
+                    <option [value]="undefined">Select category</option> 
+                    <option *ngFor="let item of data" [value]="item.title"> {{item.title}} </option> 
+                  </select>
+                   
+
+              </div> 
+                <div class="form-group"   style="width: 100%;">
+                    <textarea class="form-control"  rows="3" formControlName="field" 
+                    [ngClass]="{ 'is-invalid': submitted && fval.field.errors }">
+                  </textarea>
+                    <div *ngIf="submitted && fval.field.errors" >
+                      <div *ngIf="fval.field.errors.required">
+                     Enter the question
+                      </div>
+                    </div>
+                </div>
+                <label ><b style="color: blueviolet;">Add positive</b></label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-label="" aria-describedby="basic-addon2" 
+                    formControlName="addquestion"
+                    [ngClass]="{ 'is-invalid': submitted && fval.addquestion.errors }">
+                    <div *ngIf="submitted && fval.addquestion.errors" class="invalid-feedback">
+                      <div *ngIf="fval.addquestion.errors.required">
+                    add positive
+                      </div>
+                    </div>
+                    <div class="input-group-append" >
+                      <button type="button"><i class="fa fa-edit"></i></button>
+                      <button type="button"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+                         
+              
+                    <div class="input-group mb-3"  *ngFor="let inputservice of servicesfeature_id; let i=index">
+                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2"
+                         formControlName="addquestion1"
+                         [ngClass]="{ 'is-invalid': submitted && fval.addquestion1.errors }">
+                         <div *ngIf="submitted && fval.addquestion1.errors" class="invalid-feedback">
+                          <div *ngIf="fval.addquestion1.errors.required">
+                        add positive1
+                          </div>
+                        </div>
+                            <div class="input-group-append">
+                              <button type="button" ><i class="fa fa-edit"></i></button>
+                              <button type="button" (click)="deleteFeature(i)"><i class="fa fa-trash"></i></button>
+                            </div>
+                    </div>
+                        <div>
+                            <button type="button" (click)="addFeature()" class="btn btn-primary" style="float: right;">ADD</button>                         
+                        </div><br>
+                          <label for="demo"><b style="color: blueviolet;">Add Negative</b></label>
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" aria-label="" aria-describedby="basic-addon2" 
+                                formControlName="addNegativequestion"
+                                [ngClass]="{ 'is-invalid': submitted && fval.addNegativequestion.errors }">
+                                <div *ngIf="submitted && fval.addNegativequestion.errors" class="invalid-feedback">
+                                  <div *ngIf="fval.addNegativequestion.errors.required">
+                                add Negative
+                                  </div>
+                                </div>
+                                    <div class="input-group-append" >
+                                      <button type="button"><i class="fa fa-edit"></i></button>
+                                      <button type="button" ><i class="fa fa-trash"></i></button>
+                                  </div>
+                              </div>
+
+                          <div class="input-group mb-3"  *ngFor="let inputservice of servicesfeature_id1; let i=index" >
+                              <input type="text" class="form-control"placeholder="" aria-label="" 
+                              aria-describedby="basic-addon2"  
+                              formControlName="addNegativequestion1"
+                              [ngClass]="{ 'is-invalid': submitted && fval.addNegativequestion1.errors }">
+                              <div *ngIf="submitted && fval.addNegativequestion1.errors" class="invalid-feedback">
+                                <div *ngIf="fval.addNegativequestion1.errors.required">
+                              add Negative
+                                </div>
+                              </div>
+
+
+                            <div class="input-group-append">
+                                <button type="button"><i class="fa fa-edit"></i></button>
+                                <button type="button" (click)="deleteNegativeFeature(i)"><i class="fa fa-trash"></i></button>
+                            </div>
+                      </div>
+                        <div>
+                          <button type="button" (click)="addNegativeFeature()" class="btn btn-primary" style="float: right;">ADD</button>                         
+                      </div>
+
+                    <div>
+                        <label><b style="color: blueviolet;">Grade your Candidate</b><br>
+                          here are the default grading if you want to change 
+                          you can 
+                        </label>
+                   </div>
+                        <div class="row">
+                                <div class="input-group col-4 mb-3">                      
+                                    <input type="number" class="form-control" 
+                                     placeholder="no evidence" aria-label="Recipient's username" 
+                                     aria-describedby="basic-addon2"
+                                      formControlName="evidence"
+                                      [ngClass]="{ 'is-invalid': submitted && fval.evidence.errors }">
+                                      <div *ngIf="submitted && fval.evidence.errors" class="invalid-feedback">
+                                        <div *ngIf="fval.evidence.errors.required">
+                                      add Negative
+                                        </div>
+                                      </div>
+                                </div>
+                                  <div class="input-group col-4 mb-3">                          
+                                    <input type="number" class="form-control" placeholder="poor" aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="poor">
+                                  </div>
+                                <div class="input-group col-4 mb-3">
+                                  <input type="number" class="form-control" placeholder="Area of concern" aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="Area_of_concern">
+                                </div>
+                        </div>
+
+                            <div class="row">
+                                <div class="input-group col-4 mb-3">                          
+                                    <input type="" class="form-control" 
+                                    placeholder="Satisfactory" aria-label="Recipient's username" 
+                                    aria-describedby="basic-addon2" formControlName="Satisfactory">                                           
+                                </div>
+                                <div class="input-group col-4 mb-3">
+                                  <input type="text" class="form-control color-vo" placeholder="ADD_GRADE"  aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="ADD_GRADE">
+                                </div>
+                            </div>
+                          <div>
+                            <button  type="Submit" class="btn btn-secondary"  >submit assesments</button>
+                            <button type="button" class="btn btn-secondary" style="margin-left: 10px;">Add and go to next Question</button>
+                            <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="Reset()">Reset</button> 
+                          </div>                    
+      </form>     
+    </div> 
+
+    <div class="col-md-6"> 
+        <div class="mb-2">
+          <div class="card p-2">
+              <div class="card-body">
+                  <label class="label mb-3">Added Questions</label>
+                  <div class="row">
+                      <div class="col-md-2" *ngFor="let repeat of result; let i = index">
+                          <p class="numberCircle">{{i+1}}</p> 
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="mb-2" *ngFor="let repeat of result; let i = index">
+          <div class="card p-2">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <p>{{i+1}}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-group-append" >
+                          <button type="button"><i class="fa fa-edit" (click)="edit(i)"></i></button>
+                          <button type="button"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p>{{repeat.dropdown}}</p>
+                  </div>
+                  <div class="row">
+                    <p>{{repeat.field}}</p>
+                  </div>
+              </div>
+          </div>
+        </div>
+          
+    </div>
+      
+            
+    </div>
+    </div> 
+   
+
+
+<!-- <form #loginform='ngForm' [formGroup]="profileForm" (ngSubmit)='loginSubmit(loginform.value)'>
+  <div class="form-group"   style="width: 100%;">
+    <textarea class="form-control"  rows="3" formControlName="question"></textarea>
+  </div>
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+  <input type="submit" value="Submit">
+
+</form> -->
+
+
+
+ 
+  
